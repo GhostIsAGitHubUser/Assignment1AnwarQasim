@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark to Grade Converter</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="mark-to-grade.html">Mark Converter</a></li>
+                <li><a href="staff.html">Staff List</a></li>
+                <li><a href="weather.html">Weather Converter</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Mark to Grade Converter</h1>
+        <label for="mark-input">Enter your mark: </label>
+        <input type="text" id="mark-input">
+        <button onclick="convertMark()">Convert</button>
+        <p id="result"></p>
+    </main>
+    <footer>
+        <p>&copy; <span id="year"></span> Your Name</p>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        function convertMark() {
+            let mark = document.getElementById("mark-input").value;
+            let result = document.getElementById("result");
+            let grade;
+
+            try {
+                mark = parseInt(mark);
+                if (isNaN(mark)) throw "Invalid number.";
+                if (mark < 0 || mark > 100) throw "Mark out of range.";
+
+                if (mark > 90) grade = "A";
+                else if (mark > 80) grade = "B";
+                else if (mark > 70) grade = "C";
+                else if (mark > 50) grade = "D";
+                else grade = "F";
+
+                result.innerText = `Your grade is: ${grade}`;
+            } catch (error) {
+                result.innerText = `Error: ${error}`;
+            }
+        }
+    </script>
+</body>
+</html>

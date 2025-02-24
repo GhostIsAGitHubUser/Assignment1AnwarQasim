@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Converter</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="mark-to-grade.html">Mark Converter</a></li>
+                <li><a href="staff.html">Staff List</a></li>
+                <li><a href="weather.html">Weather Converter</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Weather Converter</h1>
+        <label for="temp-input">Enter temperature in Fahrenheit: </label>
+        <input type="text" id="temp-input">
+        <button onclick="convertWeather()">Convert</button>
+        <p id="result"></p>
+    </main>
+    <footer>
+        <p>&copy; <span id="year"></span> Your Name</p>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        function convertWeather() {
+            let temp = parseFloat($('#temp-input').val());
+            if (isNaN(temp)) {
+                $('#result').text("Please enter a valid number.");
+                return;
+            }
+            let celsius = (temp - 32) * 5 / 9;
+            let kelvin = celsius + 273.15;
+
+            $('#result').text(`${temp}°F = ${celsius.toFixed(2)}°C = ${kelvin.toFixed(2)}K`);
+        }
+    </script>
+</body>
+</html>
